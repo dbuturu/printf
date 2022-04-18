@@ -1,6 +1,5 @@
 #include <stdlib.h>
 #include "main.h"
-#include <stdio.h>
 
 /**
  * intstring - converts int to string
@@ -44,9 +43,10 @@ char *intstring(int n)
 			string[count++] = (((x / adjust) %10) + '0');
 		}
 	}
-	else 
+	else
 		string[count++] = x + '0';
 
 	string[count] = 0;
 	return (string);
 }
+
