@@ -23,8 +23,8 @@ int _puts(char *str)
  * Return: length of str
  */
 
-int _putn(int *num)
+int _putn(int num)
 {
-	return (_puts((*char)num));
+    return (_puts(intstring(num)));
 }
 

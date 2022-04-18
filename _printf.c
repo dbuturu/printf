@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio.h>
 
 #define NORMAL_STATE 0
 #define SPECIFIERS_STATE 1
@@ -56,7 +55,7 @@ int specifiers_state(
 			break;
 		case 'd':
 		case 'i':
-			output_length += _putn(va_arg(args, int *));
+			output_length += _putn(va_arg(args, int));
 			break;
 	}
 	return (output_length);
@@ -75,7 +74,8 @@ int _printf(const char *format, ...)
 	int i, state, output_length;
 
 	va_start(args, format);
-	state = NORMAL_STATE;
+    output_length = 0;
+    state = NORMAL_STATE;
 	for (i = 0; format[i] != '\0'; i++)
 		switch (state)
 		{
@@ -87,7 +87,7 @@ int _printf(const char *format, ...)
 				output_length = specifiers_state(format, args, i, output_length);
 				state = NORMAL_STATE;
 				break;
-		};
+		}
 
 	return (output_length);
 }
