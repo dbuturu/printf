@@ -3,7 +3,7 @@
  * _puts- print str
  *
  * @str: char *str
- * Return: lenth of str
+ * Return: length of str
  */
 
 int _puts(char *str)
@@ -14,5 +14,17 @@ int _puts(char *str)
 		_putchar(*str++);
 
 	return (i);
+}
+
+/**
+ * _putn- print num
+ *
+ * @num: int num
+ * Return: length of str
+ */
+
+int _putn(int *num)
+{
+	return (_puts((*char)num));
 }
 

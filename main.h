@@ -15,5 +15,7 @@ int specifiers_state(
 		int i,
 		int output_length
 		);
+int _putn(int *num);
+
 #endif /* MAIN_H */
 
