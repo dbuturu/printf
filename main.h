@@ -3,5 +3,6 @@
 
 int counter (char *string);
 int _putchar(char c);
+char *intstring(int n);
 
 #endif
