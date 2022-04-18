@@ -31,7 +31,7 @@ void normal_state(const char *format, int i, int *state, int *output_length)
  * @args: Other params.
  * @i: The counter.
  * @output_length: The output length.
- * @return: The output length.
+ * Return: The output length.
  */
 
 int specifiers_state(
