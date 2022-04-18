@@ -16,6 +16,7 @@ int specifiers_state(
 		int output_length
 		);
 int _putn(int *num);
+int counter (char *string);
+char *intstring(int n);
 
 #endif /* MAIN_H */
-
