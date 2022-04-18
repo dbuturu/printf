@@ -8,5 +8,12 @@
 int _putchar(char c);
 int _printf(const char *format, ...);
 int _puts(char *str);
-
+void normal_state(const char *format, int i, int *state, int *output_length);
+int specifiers_state(
+		const char *format,
+		va_list args,
+		int i,
+		int output_length
+		);
 #endif /* MAIN_H */
+
