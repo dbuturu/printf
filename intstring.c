@@ -40,7 +40,7 @@ char *intstring(int n)
 		while (adjust >= 10)
 		{
 			adjust = adjust / 10;
-			string[count++] = (((x / adjust) %10) + '0');
+			string[count++] = (((x / adjust) % 10) + '0');
 		}
 	}
 	else

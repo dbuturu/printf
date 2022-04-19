@@ -74,8 +74,8 @@ int _printf(const char *format, ...)
 	int i, state, output_length;
 
 	va_start(args, format);
-    output_length = 0;
-    state = NORMAL_STATE;
+	output_length = 0;
+	state = NORMAL_STATE;
 	for (i = 0; format[i] != '\0'; i++)
 		switch (state)
 		{
