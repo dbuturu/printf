@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 /**
  * _puts- print str
  *
@@ -10,9 +11,11 @@ int _puts(char *str)
 {
 	int i;
 
-	if (*str == NULL)
-		_putchar('(null)')
-		return(-1)
+	if (str == NULL)
+	{
+		puts("(null)");
+		return(-1);
+	}
 
 	for (i = 0; *str != '\0'; ++i)
 		_putchar(*str++);
