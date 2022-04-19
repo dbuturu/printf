@@ -19,24 +19,22 @@ int _printf(const char *format, ...)
 	c = 0;
 
 	va_start(ap, format);
-	/* check for null */
 	if (format == NULL)
 	{
 		va_end(ap);
 		return(-1);
 	}
-	/* loop to go through the printf format*/
 	for (i = 0; format[i] != '\0'; i++)
 	{
-		/* deal with string without % */
+		/* deal with the printf statement without % */
 		if (format[i] != '%')
 		{
 			write(1, &format[i], sizeof(char));
 			sum++;
 		}
-		else 
+		else
 		{
-			switch (format[i + 1])
+			switch(format[i + 1])
 			{
 				case '%':
 					write(1, "%", sizeof(char));
@@ -45,7 +43,7 @@ int _printf(const char *format, ...)
 					break;
 				case 'c':
 					c = va_arg(ap, int);
-					sum += _ch(c);
+					sum+= _ch(c);
 					i++;
 					break;
 				case 's':
@@ -65,19 +63,6 @@ int _printf(const char *format, ...)
 					break;
 				case ' ':
 					return(-1);
-					break;
-				case '\0':
-					if((i -1) > 0)
-					{
-						write(1, "%", sizeof(char));
-						i++;
-						sum++;
-					}
-					else
-					{
-						va_end(ap);
-						return(-1);
-					}
 					break;
 				default:
 					write(1, "%", sizeof(char));
