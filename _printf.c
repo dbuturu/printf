@@ -64,6 +64,19 @@ int _printf(const char *format, ...)
 				case ' ':
 					return(-1);
 					break;
+				case '\0':
+					if((i -1) > 0)
+					{
+						write(1, "%", sizeof(char));
+						i++;
+						sum++;
+					}
+					else
+					{
+						va_end(ap);
+						return(-1);
+					}
+					break;
 				default:
 					write(1, "%", sizeof(char));
 					sum++;
