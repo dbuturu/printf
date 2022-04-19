@@ -22,7 +22,7 @@ int _printf(const char *format, ...)
 	if (format == NULL)
 	{
 		va_end(ap);
-		return(-1);
+		return (-1);
 	}
 	for (i = 0; format[i] != '\0'; i++)
 	{
@@ -34,7 +34,7 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			switch(format[i + 1])
+			switch (format[i + 1])
 			{
 				case '%':
 					write(1, "%", sizeof(char));
@@ -43,7 +43,7 @@ int _printf(const char *format, ...)
 					break;
 				case 'c':
 					c = va_arg(ap, int);
-					sum+= _ch(c);
+					sum += _ch(c);
 					i++;
 					break;
 				case 's':
