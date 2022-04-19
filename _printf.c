@@ -1,13 +1,12 @@
 #include <stdarg.h>
 #include <unistd.h>
-#include "holberton.h"
+#include "main.h"
 #include <stdlib.h>
 
 /**
  * _printf - prints any chars or strings given
  * @format: input string
- * Description: prints input string, unless special characters are found,
- * in which case, it prints string or char arguments
+ * Description: prints string or char arguments
  * Return: total number of characters printed
  */
 
@@ -67,6 +66,7 @@ int _printf(const char *format, ...)
 				break;
 			case ' ':
 				return (-1);
+				break;
 			case '\0':
 				if ((i - 1) > 0)
 				{
@@ -79,6 +79,7 @@ int _printf(const char *format, ...)
 					va_end(ap);
 					return (-1);
 				}
+				break;
 			default:
 				write(1, "%", sizeof(char));
 				sum++;
