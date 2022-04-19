@@ -46,16 +46,14 @@ int _printf(const char *format, ...)
 				break;
 			case 'c':
 				c = va_arg(ap, int);
-				sum += _ch(c);
+				write(1, &c, sizeof(int));
+				sum++;
 				i++;
 				break;
 			case 's':
 				string = va_arg(ap, char *);
-				if (string == NULL)
-				{
-					string = "(null)";
-				}
-				sum += _str(string);
+				write(1, string, (counter(string) + 1));
+				sum += counter(string);
 				i++;
 				break;
 			case 'i':
