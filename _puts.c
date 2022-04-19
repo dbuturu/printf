@@ -14,7 +14,7 @@ int _puts(char *str)
 	if (str == NULL)
 	{
 		puts("(null)");
-		return(-1);
+		return (-1);
 	}
 
 	for (i = 0; *str != '\0'; ++i)
@@ -32,6 +32,6 @@ int _puts(char *str)
 
 int _putn(int num)
 {
-    return (_puts(intstring(num)));
+	return (_puts(intstring(num)));
 }
 
