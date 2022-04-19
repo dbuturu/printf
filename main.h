@@ -1,22 +1,13 @@
-#ifndef MAIN_H
-#define MAIN_H
-
+#ifndef _MAIN_H_
+#define _MAIN_H_
 #include <stdarg.h>
-#include <string.h>
-#include <unistd.h>
 
 int _putchar(char c);
+int counter(char *string);
 int _printf(const char *format, ...);
-int _puts(char *str);
-void normal_state(const char *format, int i, int *state, int *output_length);
-int specifiers_state(
-		const char *format,
-		va_list args,
-		int i,
-		int output_length
-		);
-int _putn(int num);
-int counter (char *string);
-char *intstring(int n);
+char *inToString(int n);
+int _ch(int c);
+int _str(char *string);
+int _num(int n);
 
-#endif /* MAIN_H */
+#endif 
