@@ -11,7 +11,7 @@ char *inToString(int n)
 {
 
 	long x;
-	int count, adjust;
+	unsigned int count, adjust;
 	char *string;
 
 	/* creating space for max/min int character string */
@@ -59,7 +59,7 @@ char *inToString(int n)
 	}
 	/* else if x is a single digit, convert and append to string */
 	else
-		string[count++] = x + '0';
+		string[count++] = n + '0';
 
 	/* append null */
 	string[count] = 0;
