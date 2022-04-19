@@ -1,94 +1,94 @@
-#include <stdarg.h>
-#include <unistd.h>
 #include "main.h"
-#include <stdlib.h>
+
+#define NORMAL_STATE 0
+#define SPECIFIERS_STATE 1
 
 /**
- * _printf - prints any chars or strings given
- * @format: input string
- * Description: prints string or char arguments
- * Return: total number of characters printed
+ * normal_state - Normal state cases.
+ * @format: The input format.
+ * @i: The counter.
+ * @state: The state.
+ * @output_length: The output length.
+ */
+
+void normal_state(const char *format, int i, int *state, int *output_length)
+{
+	switch (format[i])
+	{
+		case '%':
+			(*state) = SPECIFIERS_STATE;
+			break;
+		default:
+			(*output_length) += _putchar(format[i]);
+			break;
+	}
+}
+
+/**
+ * specifiers_state - Specifiers state cases.
+ * @format: The input format.
+ * @args: Other params.
+ * @i: The counter.
+ * @output_length: The output length.
+ * Return: The output length.
+ */
+
+int specifiers_state(
+		const char *format,
+		va_list args,
+		int i,
+		int output_length
+		)
+{
+	switch (format[i])
+	{
+		case 'c':
+			output_length += _putchar((char)va_arg(args, int));
+			break;
+
+		case 's':
+			output_length += _puts(va_arg(args, char *));
+			break;
+
+		case '%':
+			output_length += _putchar('%');
+			break;
+		case 'd':
+		case 'i':
+			output_length += _putn(va_arg(args, int));
+			break;
+	}
+	return (output_length);
+}
+
+/**
+ * _printf - Produces output according to a format.
+ * @format: The input format.
+ * Return: The length of output.
  */
 
 int _printf(const char *format, ...)
 {
-	va_list ap;
 
-	int i, x, sum = 0;
-	char *string, c;
+	va_list args;
+	int i, state, output_length;
 
-	c = 0;
-	string = 0;
-
-	va_start(ap, format);
-
-	if (format == NULL)
-	{
-		va_end(ap);
-		return (-1);
-	}
-
+	va_start(args, format);
+    output_length = 0;
+    state = NORMAL_STATE;
 	for (i = 0; format[i] != '\0'; i++)
-	{
-		if (format[i] != '%')
+		switch (state)
 		{
-			write(1, &format[i], sizeof(char));
-			sum++;
-		}
-		else
-		{
-			switch (format[i + 1])
-			{
-			case '%':
-				write(1, "%", sizeof(char));
-				i++;
-				sum++;
+			case NORMAL_STATE:
+				normal_state(format, i, &state, &output_length);
 				break;
-			case 'c':
-				c = va_arg(ap, int);
-				sum += _ch(c);
-				i++;
-				break;
-			case 's':
-				string = va_arg(ap, char *);
-				if (string == NULL)
-				{
-					string = "(null)";
-				}
-				sum += _str(string);
-				i++;
-				break;
-			case 'i':
-			case 'd':
-				x = va_arg(ap, int);
-				sum += _num(x);
-				i++;
-				break;
-			case ' ':
-				return (-1);
-				break;
-			case '\0':
-				if ((i - 1) > 0)
-				{
-					write(1, "%", sizeof(char));
-					i++;
-					sum++;
-				}
-				else
-				{
-					va_end(ap);
-					return (-1);
-				}
-				break;
-			default:
-				write(1, "%", sizeof(char));
-				sum++;
-				break;
-			}
-		}
-	}
 
-	va_end(ap);
+			case SPECIFIERS_STATE:
+				output_length = specifiers_state(format, args, i, output_length);
+				state = NORMAL_STATE;
+				break;
+		}
 
-	return (sum);
+	return (output_length);
 }
+
