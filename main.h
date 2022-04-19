@@ -1,8 +1,13 @@
-#define MAIN_H
-#ifndef MAIN_H
+#ifndef _MAIN_H_
+#define _MAIN_H_
+#include <stdarg.h>
 
-int counter (char *string);
 int _putchar(char c);
-char *intstring(int n);
+int counter(char *string);
+int _printf(const char *format, ...);
+char *inToString(int n);
+int _ch(int c);
+int _str(char *string);
+int _num(int n);
 
 #endif
