@@ -40,6 +40,8 @@ int specifiers_state(
 		int output_length
 		)
 {
+	char *string;
+
 	switch (format[i])
 	{
 		case 'c':
@@ -47,16 +49,23 @@ int specifiers_state(
 			break;
 
 		case 's':
-			output_length += _puts(va_arg(args, char *));
+			string = va_arg(args, char *);
+			if (string == NULL)
+			{
+				string = "(null)";
+			}
+			output_length += _puts(string);
 			break;
 
 		case '%':
 			output_length += _putchar('%');
 			break;
-		case 'd':
+		case ' ':
+			return (-1);
+			break;case 'd':
 		case 'i':
-			output_length += _putn(va_arg(args, int));
-			break;
+				output_length += _putn(va_arg(args, int));
+				break;
 	}
 	return (output_length);
 }
