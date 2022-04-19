@@ -57,15 +57,20 @@ int specifiers_state(
 			output_length += _puts(string);
 			break;
 
+		case '\0':
 		case '%':
 			output_length += _putchar('%');
 			break;
+
 		case ' ':
-			return (-1);
-			break;case 'd':
+			output_length = -1;
+			break;
+
+		case 'd':
 		case 'i':
 				output_length += _putn(va_arg(args, int));
 				break;
+
 	}
 	return (output_length);
 }
