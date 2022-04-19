@@ -66,7 +66,6 @@ int _printf(const char *format, ...)
 				break;
 			case ' ':
 				return (-1);
-				break;
 			case '\0':
 				if ((i - 1) > 0)
 				{
