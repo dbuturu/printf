@@ -17,15 +17,15 @@ int _puts(char *str)
 	return (i);
 }
 
-/**
- * _putn- print num
- *
- * @num: int num
- * Return: length of str
- */
-
-int _putn(int num, int radix)
+int putn(int output_length, va_list args, int radix, int sign, int number, int is_upper)
 {
-	return (_puts(intstring(num, radix)));
+        if (number == 1) {
+                if (sign)
+                        output_length += printf_signed(va_arg(args, int), radix, is_upper);
+                else
+                        output_length +=
+                                printf_unsigned(va_arg(args, unsigned long), radix, is_upper);
+                number = output_length;
+        }
+        return number;
 }
-

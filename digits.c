@@ -1,31 +1,35 @@
+#include "main.h"
 
-
-void printf_unsigned(unsigned long long number, int radix)
+int printf_unsigned(unsigned long number, int radix, int is_upper)
 {
-    char buffer[32];
-    int pos = 0;
-    const char hexChars_lower[] = "0123456789abcdef";
-    const char hexChars_upper[] = "0123456789ABCDEF";
+	char buffer[32], *hexChars;
+	int pos = 0, output_length = 0;
+	char hexChars_lower[18] = "0123456789abcdef";
+	char hexChars_upper[18] = "0123456789ABCDEF";
 
-    // convert number to ASCII
-    do
-    {
-        unsigned long long rem = number % radix;
-        number /= radix;
-        buffer[pos++] = g_HexChars[rem];
-    } while (number > 0);
+	hexChars = is_upper ? hexChars_upper : hexChars_lower;
 
-    // print number in reverse order
-    while (--pos >= 0)
-        putc(buffer[pos]);
+	do {
+		unsigned long rem = number % radix;
+		number /= radix;
+		buffer[pos++] = hexChars[rem];
+	} while (number > 0);
+
+	while (--pos >= 0)
+		output_length += _putchar(buffer[pos]);
+
+	return (output_length);
 }
 
-void printf_signed(long long number, int radix)
+int printf_signed(long number, int radix, int is_upper)
 {
-    if (number < 0)
-    {
-        putc('-');
-        printf_unsigned(-number, radix);
-    }
-    else printf_unsigned(number, radix);
+	int output_length = 0;
+	if (number < 0)
+	{
+		output_length += _putchar('-');
+		output_length += printf_unsigned((number * -1) , radix, is_upper);
+	}
+	else output_length += printf_unsigned(number, radix, is_upper);
+
+	return (output_length);
 }
