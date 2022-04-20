@@ -24,6 +24,52 @@ void normal_state(const char *format, int i, int *state, int *output_length)
 	}
 }
 
+int numbers(char fmt, int output_length, int arg)
+{
+    switch (fmt) {
+        case 'd':
+        case 'i':
+            output_length += _putn(arg, 10);
+            break;
+
+        case 'b':
+            output_length += _putn(arg, 2);
+            break;
+
+        case 'u':
+            output_length += _putn(arg, 10);
+            break;
+
+        case 'o':
+            output_length += _putn(arg, 8);
+            break;
+
+        case 'x':
+            output_length += _putn(arg, 16);
+            break;
+
+        case 'X':
+            output_length += _putn(arg, 16);
+            break;
+
+        case 'p': {
+            output_length += _putn(arg, 16);
+            break;
+        }
+    }
+    return output_length;
+}
+
+int is_number(char flag){
+    char *flags = "dibuoxXp";
+    int i, is_num = 0;
+
+    for (i = 0; flags[i]; ++i)
+        if (flags[i] == flag)
+            is_num = 1;
+   return is_num;
+}
+
 /**
  * specifiers_state - Specifiers state cases.
  * @format: The input format.
@@ -66,11 +112,19 @@ int specifiers_state(
 			output_length = -1;
 			break;
 
-		case 'd':
-		case 'i':
-				output_length += _putn(va_arg(args, int));
-				break;
+        case 'S':
+            output_length += _puts(va_arg(args, char *));
+            break;
 
+        default:
+			if(is_number(format[i])) {
+                output_length = numbers(format[i], output_length, va_arg(args, int));
+            }else
+            {
+                output_length += _putchar(format[--i]);
+                output_length += _putchar(format[++i]);
+                break;
+            }
 	}
 	return (output_length);
 }

@@ -7,13 +7,13 @@
  * Return: string
  */
 
-char *intstring(int n)
+char *intstring(int n, int r)
 {
 	long x;
 	int count, adjust;
 	char *string;
 
-	string = malloc(sizeof(char) * 10);
+	string = malloc(sizeof(char) * r);
 
 	if (string == NULL)
 		return (NULL);
@@ -21,7 +21,7 @@ char *intstring(int n)
 
 	count = 0;
 
-	if (x < 0)
+	if (n < 0)
 	{
 		string[count++] = '-';
 
@@ -30,17 +30,17 @@ char *intstring(int n)
 
 	if (x > 9)
 	{
-		adjust = 10;
+		adjust = r;
 
-		while (x / adjust >= 10)
-			adjust = adjust * 10;
+		while (x / adjust >= r)
+			adjust = adjust * r;
 
 		string[count++] = ((x / adjust) + '0');
 
-		while (adjust >= 10)
+		while (adjust >= r)
 		{
-			adjust = adjust / 10;
-			string[count++] = (((x / adjust) % 10) + '0');
+			adjust = adjust / r;
+			string[count++] = (((x / adjust) % r) + '0');
 		}
 	}
 	else

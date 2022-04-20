@@ -24,8 +24,8 @@ int _puts(char *str)
  * Return: length of str
  */
 
-int _putn(int num)
+int _putn(int num, int radix)
 {
-	return (_puts(intstring(num)));
+	return (_puts(intstring(num, radix)));
 }
 

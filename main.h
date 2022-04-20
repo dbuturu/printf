@@ -15,8 +15,9 @@ int specifiers_state(
 		int i,
 		int output_length
 		);
-int _putn(int num);
+int _putn(int num, int radix);
 int counter (char *string);
-char *intstring(int n);
+char *intstring(int n, int r);
 
 #endif /* MAIN_H */
+
